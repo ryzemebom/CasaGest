@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login - RentMaster</title>
+    <title>Login - Apartment Manager</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="login-box">
     <!-- Logo -->
-    <img src="https://images.vexels.com/media/users/3/136535/isolated/lists/393a7d8e436bccc3aedfd43865b48890-icone-de-cadeado.png" alt="Logo RentMaster">
+    <img src="https://images.vexels.com/media/users/3/136535/isolated/lists/393a7d8e436bccc3aedfd43865b48890-icone-de-cadeado.png" alt="Logo Apartment Manager">
 
-    <!-- Mensagem de erro   <h2>CasaGest</h2>-->
+    <!-- Mensagem de erro   <h2>Apartment Manager</h2>-->
 
     <!-- Mensagem de erro -->
     <?php if ($error): ?>

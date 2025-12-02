@@ -1,7 +1,8 @@
 <div class="sidebar">
     <div class="sidebar-header">
-        <h2>CasaGest</h2>
+        <h2>Apartment Manager</h2>
     </div>
+    <link rel="stylesheet" href="css/responsive.css">
     <style>/* Sidebar */
 body {
     display: flex;
@@ -13,7 +14,7 @@ body {
     top: 0;
     width: 250px;
     height: 100vh;
-    background: #1c464d;
+    background: #1d2b53ff;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -58,7 +59,7 @@ body {
 }
 
 .sidebar-menu li a:hover {
-    background: #f7691d;
+    background: #0c2d8aff;
     color: #fff;
 }
 
@@ -93,12 +94,12 @@ if (!isset($_SESSION["user"])) {
 ?>
 </style>
     <ul class="sidebar-menu">
-        <li><a href="dashboard.php"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
-        <li><a href="apartamentos.php"><i class="fa fa-building"></i> Apartamentos</a></li>
-        <li><a href="inquilinos.php"><i class="fa fa-users"></i> Inquilinos</a></li>
-        <li><a href="pagamentos.php"><i class="fa fa-dollar-sign"></i> Pagamentos</a></li>
-        <li><a href="contratos.php"><i class="fa fa-file-contract"></i> Contratos</a></li>
-        <li><a href="manutencoes.php"><i class="fa fa-tools"></i> Manutenção</a></li>
-        <li><a href="logout.php"><i class="fa fa-sign-out-alt"></i> Sair</a></li>
+        <li><a href="dashboard.php"><i class="fa fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+        <li><a href="apartamentos.php"><i class="fa fa-building"></i> <span>Apartamentos</span></a></li>
+        <li><a href="inquilinos.php"><i class="fa fa-users"></i> <span>Inquilinos</span></a></li>
+        <li><a href="pagamentos.php"><i class="fa fa-dollar-sign"></i> <span>Pagamentos</span></a></li>
+        <li><a href="contratos.php"><i class="fa fa-file-contract"></i> <span>Contratos</span></a></li>
+        <li><a href="manutencoes.php"><i class="fa fa-tools"></i> <span>Manutenção</span></a></li>
+        <li><a href="logout.php"><i class="fa fa-sign-out-alt"></i> <span>Sair</span></a></li>
     </ul>
 </div>

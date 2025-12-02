@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": 1,
+        "inquilino": "Arthur Ivo Livino E Silva Maia",
+        "apartamento": "A155",
+        "valor_aluguel": 125,
+        "inicio": "2025-11-30",
+        "fim": "2025-12-01",
+        "status": "ativo",
+        "tipo_contrato": "residencial",
+        "arquivo": "contrato_teste",
+        "data_criacao": "2025-12-02"
+    }
+]

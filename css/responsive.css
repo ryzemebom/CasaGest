@@ -1,0 +1,537 @@
+/* CSS Responsivo para Dispositivos Móveis */
+
+/* Tablets (768px a 1024px) */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .cards {
+        flex-direction: column;
+    }
+    
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar-header h2 {
+        display: none;
+    }
+
+    .sidebar-menu li a span {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+}
+
+/* Tablets pequenos e grandes celulares (768px) */
+@media (max-width: 768px) {
+    * {
+        font-size: 14px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .main-content {
+        padding: 15px;
+        margin-left: 0;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        width: 250px;
+        height: 100vh;
+        transition: left 0.3s;
+        z-index: 999;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Topbar Mobile */
+    .topbar {
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 15px;
+    }
+
+    .topbar a {
+        margin-left: 10px;
+        margin-bottom: 0;
+        font-size: 0.85rem;
+    }
+
+    /* Cards e Formulários */
+    .card, .login-box {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .card h2 {
+        font-size: 1.1rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .page-header p {
+        font-size: 0.85rem;
+    }
+
+    /* Stats Cards */
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 12px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stat-card i {
+        font-size: 2rem;
+    }
+
+    .stat-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .stat-info p {
+        font-size: 0.8rem;
+    }
+
+    .stat-info small {
+        font-size: 0.7rem;
+    }
+
+    /* Dashboard */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .dashboard-section {
+        padding: 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .section-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .stat-boxes {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-box {
+        padding: 12px;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    /* Listas recentes */
+    .recent-list h3 {
+        font-size: 0.95rem;
+    }
+
+    .list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .list-info strong {
+        font-size: 0.9rem;
+    }
+
+    .list-info small {
+        font-size: 0.75rem;
+    }
+
+    .list-value {
+        font-size: 0.9rem;
+        align-self: flex-start;
+    }
+
+    .list-status {
+        font-size: 0.75rem;
+        padding: 3px 8px;
+    }
+
+    /* Ações Rápidas */
+    .quick-actions {
+        padding: 15px;
+    }
+
+    .quick-actions h2 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .action-btn {
+        padding: 15px 10px;
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+
+    .action-btn i {
+        font-size: 1.5rem;
+    }
+
+    /* Tabs */
+    .tabs {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .tab-button {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        gap: 6px;
+    }
+
+    /* Tabelas */
+    .table th, .table td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+
+    .table {
+        margin-top: 10px;
+    }
+
+    /* Formulários */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    input, textarea, select {
+        padding: 10px 12px;
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .form-actions {
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .form-actions .btn-submit,
+    .form-actions .btn-cancel {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Botões */
+    .btn, .btn-submit, button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Filtros */
+    .filters {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Empty State */
+    .empty-state {
+        padding: 40px 20px;
+    }
+
+    .empty-state i {
+        font-size: 3rem;
+    }
+
+    .empty-state p {
+        font-size: 1rem;
+    }
+
+    /* Login */
+    .login-box {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .login-box h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Alert */
+    .alert {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Celulares grandes (480px a 768px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .topbar {
+        padding: 10px;
+    }
+
+    .topbar a {
+        margin-left: 5px;
+        font-size: 0.75rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.3rem;
+        gap: 8px;
+    }
+
+    .page-header p {
+        font-size: 0.75rem;
+    }
+
+    /* Stats - Une em coluna única */
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .stat-card i {
+        font-size: 1.5rem;
+    }
+
+    .stat-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .stat-info p {
+        font-size: 0.75rem;
+    }
+
+    .stat-info small {
+        font-size: 0.65rem;
+    }
+
+    /* Actions */
+    .action-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .action-btn {
+        padding: 12px;
+        font-size: 0.8rem;
+    }
+
+    .action-btn i {
+        font-size: 1.3rem;
+    }
+
+    /* Cards */
+    .card {
+        padding: 12px;
+    }
+
+    .card h2 {
+        font-size: 1rem;
+    }
+
+    /* Tabela em scroll horizontal */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table {
+        font-size: 0.75rem;
+    }
+
+    .table th, .table td {
+        padding: 8px 6px;
+    }
+
+    /* Formulário */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    input, textarea, select {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* Botões Mobile */
+    .btn, .btn-submit, button {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    /* Lista recente */
+    .list-item {
+        padding: 8px;
+    }
+
+    .list-info strong {
+        font-size: 0.85rem;
+    }
+
+    .list-value, .list-status {
+        font-size: 0.8rem;
+    }
+
+    /* Tabs */
+    .tabs {
+        gap: 5px;
+    }
+
+    .tab-button {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* Dashboard grid */
+    .dashboard-grid {
+        gap: 10px;
+    }
+
+    .dashboard-section {
+        padding: 12px;
+    }
+
+    .section-header h2 {
+        font-size: 1rem;
+    }
+
+    .stat-boxes {
+        gap: 8px;
+    }
+
+    .stat-box {
+        padding: 10px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    /* Badges */
+    .badge {
+        padding: 3px 8px;
+        font-size: 0.7rem;
+    }
+
+    /* Filters */
+    .filter-btn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* Sidebar oculto em mobile */
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Celulares muito pequenos (até 360px) */
+@media (max-width: 360px) {
+    .page-header h1 {
+        font-size: 1.1rem;
+    }
+
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 8px;
+    }
+
+    .stat-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .table th {
+        font-size: 0.7rem;
+        padding: 6px 4px;
+    }
+
+    .table td {
+        font-size: 0.7rem;
+        padding: 6px 4px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}

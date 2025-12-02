@@ -41,51 +41,32 @@ $apartamentos = readData("apartamentos");
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Inquilinos - RentMaster</title>
+    <title>Inquilinos - Apartment Manager</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 <div class="main-content">
-
-    <div class="tabs">
-        <button class="tab-button active" data-tab="add">Adicionar Inquilino</button>
-        <button class="tab-button" data-tab="list">Lista de Inquilinos</button>
+    <div class="page-header">
+        <h1><i class="fas fa-users"></i> Inquilinos</h1>
+        <p>Gerenciar inquilinos e seus dados de contato</p>
     </div>
 
-    <!-- Aba Adicionar -->
-    <div class="tab-content active" id="add">
-        <div class="card">
-            <form method="post" action="inquilinos.php?action=create">
-                <div class="form-group">
-                    <label>Nome</label>
-                    <input name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label>Telefone</label>
-                    <input name="telefone">
-                </div>
-                <div class="form-group">
-                    <label>Apartamento</label>
-                    <select name="apartamento" required>
-                        <option value="">Selecione</option>
-                        <?php foreach ($apartamentos as $a): ?>
-                            <option value="<?= $a['numero']; ?>"><?= $a['numero']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <button type="submit" class="btn-submit">Salvar</button>
-            </form>
-        </div>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="list"><i class="fas fa-list"></i> Lista de Inquilinos</button>
+        <button class="tab-button" data-tab="add"><i class="fas fa-plus"></i> Adicionar Inquilino</button>
     </div>
 
     <!-- Aba Lista -->
-    <div class="tab-content" id="list">
+    <div class="tab-content active" id="list">
         <div class="card">
+            <?php if (empty($inquilinos)): ?>
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>Nenhum inquilino cadastrado ainda</p>
+                    <button class="btn tab-button-link" data-tab="add" onclick="switchTab(this)">Adicionar Primeiro Inquilino</button>
+                </div>
+            <?php else: ?>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -107,13 +88,48 @@ $apartamentos = readData("apartamentos");
                             <td><?= $i["telefone"]; ?></td>
                             <td><?= $i["apartamento"]; ?></td>
                             <td>
-                                <a href="inquilinos.php?action=delete&id=<?= $i["id"]; ?>" class="btn-delete" onclick="return confirm('Excluir?')">Excluir</a>
+                                <a href="inquilinos.php?action=delete&id=<?= $i["id"]; ?>" class="btn-delete" onclick="return confirm('Excluir?')"><i class="fas fa-trash"></i> Excluir</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Aba Adicionar -->
+    <div class="tab-content" id="add">
+        <div class="card">
+            <h2>Adicionar Novo Inquilino</h2>
+            <form method="post" action="inquilinos.php?action=create">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input name="nome" placeholder="Digite o nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Digite o email" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input name="telefone" placeholder="Digite o telefone" required>
+                </div>
+                <div class="form-group">
+                    <label>Apartamento</label>
+                    <select name="apartamento" required>
+                        <option value="">Selecione um apartamento</option>
+                        <?php foreach ($apartamentos as $a): ?>
+                            <option value="<?= $a['numero']; ?>"><?= $a['numero']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit"><i class="fas fa-save"></i> Salvar Inquilino</button>
+                    <button type="button" class="btn-cancel" onclick="document.querySelector('form').reset()"><i class="fas fa-times"></i> Limpar</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -124,15 +140,17 @@ $apartamentos = readData("apartamentos");
 const tabs = document.querySelectorAll('.tab-button');
 const contents = document.querySelectorAll('.tab-content');
 
+function switchTab(element) {
+    const tabId = element.dataset.tab;
+    tabs.forEach(t => t.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-        // Remove active das abas e conteúdos
-        tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.remove('active'));
-
-        // Ativa aba e conteúdo clicado
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+        switchTab(tab);
     });
 });
 </script>

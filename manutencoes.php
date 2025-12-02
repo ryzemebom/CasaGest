@@ -50,7 +50,7 @@ $apartamentos = readData("apartamentos");
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8">
-    <title>Manutenções - RentMaster</title>
+    <title>Manutenções - Apartment Manager</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -58,70 +58,117 @@ $apartamentos = readData("apartamentos");
 <?php include "header.php"; ?>
 
 <main class="main-content">
-    <!-- Formulário de Registro -->
-    <section class="card">
-        <h2>Registrar Manutenção</h2>
-        <form method="post" action="manutencoes.php?action=create">
-            <label for="apartamento">Apartamento</label>
-            <select name="apartamento" id="apartamento" required>
-                <option value="">Selecione</option>
-                <?php foreach ($apartamentos as $a): ?>
-                    <option value="<?= htmlspecialchars($a['numero']); ?>"><?= htmlspecialchars($a['numero']); ?></option>
-                <?php endforeach; ?>
-            </select>
+    <div class="page-header">
+        <h1><i class="fas fa-tools"></i> Manutenções</h1>
+        <p>Gerenciar manutenções dos apartamentos</p>
+    </div>
 
-            <label for="descricao">Descrição</label>
-            <textarea name="descricao" id="descricao" required></textarea>
+    <!-- Abas -->
+    <div class="tabs">
+        <button class="tab-button active" data-tab="list"><i class="fas fa-list"></i> Lista de Manutenções</button>
+        <button class="tab-button" data-tab="add"><i class="fas fa-plus"></i> Registrar Manutenção</button>
+    </div>
 
-            <label for="data">Data</label>
-            <input type="date" name="data" id="data" required>
-
-            <label for="status">Status</label>
-            <select name="status" id="status">
-                <option value="pendente">Pendente</option>
-                <option value="concluido">Concluído</option>
-            </select>
-
-            <button type="submit">Salvar</button>
-        </form>
-    </section>
-
-    <!-- Lista de Manutenções -->
-    <section class="card">
-        <h2>Lista de Manutenções</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Apartamento</th>
-                    <th>Descrição</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($manutencoes)): ?>
+    <!-- Aba Lista -->
+    <div class="tab-content active" id="list">
+        <section class="card">
+            <?php if (empty($manutencoes)): ?>
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>Nenhuma manutenção registrada ainda</p>
+                    <button class="btn tab-button-link" data-tab="add" onclick="switchTab(this)">Registrar Primeira Manutenção</button>
+                </div>
+            <?php else: ?>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Apartamento</th>
+                        <th>Descrição</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php foreach ($manutencoes as $m): ?>
                         <tr>
                             <td><?= htmlspecialchars($m["id"]); ?></td>
                             <td><?= htmlspecialchars($m["apartamento"]); ?></td>
                             <td><?= htmlspecialchars($m["descricao"]); ?></td>
                             <td><?= htmlspecialchars($m["data"]); ?></td>
-                            <td><?= htmlspecialchars($m["status"]); ?></td>
+                            <td><?= ucfirst(htmlspecialchars($m["status"])); ?></td>
                             <td>
-                                <a href="manutencoes.php?action=delete&id=<?= $m["id"]; ?>" onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
+                                <a href="manutencoes.php?action=delete&id=<?= htmlspecialchars($m["id"]); ?>" class="btn-delete" onclick="return confirm('Deseja realmente excluir?')"><i class="fas fa-trash"></i> Excluir</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6">Nenhuma manutenção registrada.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </section>
+                </tbody>
+            </table>
+            <?php endif; ?>
+        </section>
+    </div>
+
+    <!-- Aba Adicionar -->
+    <div class="tab-content" id="add">
+        <section class="card">
+            <h2>Registrar Nova Manutenção</h2>
+            <form method="post" action="manutencoes.php?action=create">
+                <div class="form-group">
+                    <label for="apartamento">Apartamento</label>
+                    <select name="apartamento" id="apartamento" required>
+                        <option value="">Selecione um apartamento</option>
+                        <?php foreach ($apartamentos as $a): ?>
+                            <option value="<?= htmlspecialchars($a['numero']); ?>"><?= htmlspecialchars($a['numero']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea name="descricao" id="descricao" placeholder="Descreva o problema ou manutenção necessária" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="data">Data</label>
+                    <input type="date" name="data" id="data" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" id="status">
+                        <option value="pendente">Pendente</option>
+                        <option value="concluido">Concluído</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit"><i class="fas fa-save"></i> Salvar Manutenção</button>
+                    <button type="button" class="btn-cancel" onclick="document.querySelector('form').reset()"><i class="fas fa-times"></i> Limpar</button>
+                </div>
+            </form>
+        </section>
+    </div>
 </main>
+
+<script>
+// JS para alternar abas
+const tabs = document.querySelectorAll('.tab-button');
+const contents = document.querySelectorAll('.tab-content');
+
+function switchTab(element) {
+    const tabId = element.dataset.tab;
+    tabs.forEach(t => t.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        switchTab(tab);
+    });
+});
+</script>
 </body>
 </html>
