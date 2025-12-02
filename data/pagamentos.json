@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "inquilino": "Arthur Ivo Livino E Silva Maia",
+        "apartamento": "44",
+        "valor": 12,
+        "data": "12121-12-12",
+        "status": "pago"
+    }
+]
