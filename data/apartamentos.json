@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "numero": "A155",
+        "endereco": "Rua Elizabete Alves",
+        "descricao": "Sem descrição ",
+        "valor": 125,
+        "status": "disponivel"
+    }
+]
